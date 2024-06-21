@@ -1,0 +1,32 @@
+------------------------------------------
+Download the firmware and the tools
+------------------------------------------
+lspci | grep Mellanox
+wget https://www.mellanox.com/downloads/MFT/mft-4.28.0-92-x86_64-deb.tgz
+tar xvf mft-4.28.0-92-x86_64-deb.tgz
+wget https://www.mellanox.com/downloads/firmware/fw-ConnectX4-rel-12_28_2006-MCX455A-ECA_Ax-UEFI-14.21.17-FlexBoot-3.6.102.bin.zip
+unzip fw-ConnectX4-rel-12_28_2006-MCX455A-ECA_Ax-UEFI-14.21.17-FlexBoot-3.6.102.bin.zip
+cd mft-4.28.0-92-x86_64-deb
+sudo ./install.sh
+cd ..
+sudo mst start
+sudo mst status
+sudo flint -d {device from previous command} query
+
+------------------------------------------
+Upgrade the firmware
+------------------------------------------
+sudo flint -d {device} -i fw-ConnectX4-rel-12_28_2006-MCX455A-ECA_Ax-UEFI-14.21.17-FlexBoot-3.6.102.bin burn
+sudo reboot
+
+
+------------------------------------------
+Switch to Ethernet Mode
+------------------------------------------
+mst start
+
+ip addr
+sudo mlxconfig -d {device} query
+sudo mlxconfig -d {device} query | grep LINK_TYPE
+sudo mlxconfig -d {device} set LINK_TYPE_P1=2
+reboot
