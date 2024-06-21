@@ -12,12 +12,12 @@ sudo ./install.sh
 cd ..
 sudo mst start
 sudo mst status
-sudo flint -d {device from previous command} query
+sudo flint -d /dev/mst/mt4115_pciconf0 query
 
 ------------------------------------------
 Upgrade the firmware
 ------------------------------------------
-sudo flint -d {device} -i fw-ConnectX4-rel-12_28_2006-MCX455A-ECA_Ax-UEFI-14.21.17-FlexBoot-3.6.102.bin burn
+sudo flint -d /dev/mst/mt4115_pciconf0 -i fw-ConnectX4-rel-12_28_2006-MCX455A-ECA_Ax-UEFI-14.21.17-FlexBoot-3.6.102.bin burn
 sudo reboot
 
 
@@ -27,7 +27,7 @@ Switch to Ethernet Mode
 mst start
 
 ip addr
-sudo mlxconfig -d {device} query
-sudo mlxconfig -d {device} query | grep LINK_TYPE
-sudo mlxconfig -d {device} set LINK_TYPE_P1=2
+sudo mlxconfig -d /dev/mst/mt4115_pciconf0 query
+sudo mlxconfig -d /dev/mst/mt4115_pciconf0 query | grep LINK_TYPE
+sudo mlxconfig -d /dev/mst/mt4115_pciconf0 set LINK_TYPE_P1=2
 reboot
