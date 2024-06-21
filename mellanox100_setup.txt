@@ -7,6 +7,7 @@ tar xvf mft-4.28.0-92-x86_64-deb.tgz
 wget https://www.mellanox.com/downloads/firmware/fw-ConnectX4-rel-12_28_2006-MCX455A-ECA_Ax-UEFI-14.21.17-FlexBoot-3.6.102.bin.zip
 unzip fw-ConnectX4-rel-12_28_2006-MCX455A-ECA_Ax-UEFI-14.21.17-FlexBoot-3.6.102.bin.zip
 cd mft-4.28.0-92-x86_64-deb
+sudo apt-get install gcc make dkms
 sudo ./install.sh
 cd ..
 sudo mst start
